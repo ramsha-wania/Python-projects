@@ -1,0 +1,12 @@
+import requests
+import json
+
+query = input("What type of news you are interested in?")
+url = f"https://newsdata.io/api/1/latest?apikey=pub_e0f9b01aca7940ce99c7102d0a7f890d&q={query}"
+r = requests.get(url)
+news = json.loads(r.text)
+#print(news, type(news))
+for article in news["results"]:
+    print(article["title"])
+    print(article["description"])
+    print("-------------------------------")
