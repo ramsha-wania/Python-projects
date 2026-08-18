@@ -1,0 +1,178 @@
+import numpy as np
+
+#Matrix A input
+rows_A = int(input("Enter number of rows for Matrix A:"))
+cols_A = int(input("Enter number of columns for Matrix A:"))
+matrix_A = []
+
+for i in range(rows_A):
+    row = list(map(int, input(f"Enter row {i+1} of Matrix A:").split()))
+    matrix_A.append(row)
+
+matrix_A = np.array(matrix_A)
+
+#Matrix B input
+rows_B = int(input("Enter number of rows for Matrix B:"))
+cols_B = int(input("Enter number of columns for Matrix B:"))
+matrix_B = []
+
+for i in range(rows_B):
+    row = list(map(int, input(f"Enter row {i+1} of Matrix B:").split()))
+    matrix_B.append(row)
+
+matrix_B = np.array(matrix_B)
+
+#Display Matrices
+print("\nMatrix A:")
+print(matrix_A)
+
+print("\nMatrix B:")
+print(matrix_B)
+
+#Choose Operation
+while True:
+    print("\n--Matrix Calculator--")
+    print("1. Addition")
+    print("2. Substraction")
+    print("3. Multiplication")
+    print("4. Transpose")
+    print("5. Determinant")
+    print("6. Inverse")
+    print("7. Trace")
+    print("8. Exit")
+
+    choice = int(input("Enter your choice:"))
+
+#Addition
+    if choice == 1:
+        if matrix_A.shape == matrix_B.shape:
+            print("\nAddition:")
+            print(matrix_A + matrix_B)
+        else:
+            print("\nAddition isn't possible.")
+            print("Matrices must be of same size.")
+
+#Substraction
+    elif choice == 2:
+        if matrix_A.shape == matrix_B.shape:
+            print("\nSubstraction:")
+            print(matrix_A - matrix_B)
+        else:
+            print("\nSubstraction doesn't possible.")
+            print("Matrices must be of same size.")
+
+#Multiplication
+    elif choice == 3:
+        if matrix_A.shape[1] == matrix_B.shape[0]:
+            print("\nMultiplication:")
+            print(matrix_A @ matrix_B)
+        else:
+            print("\nMultiplication doesn't possible.")
+            print("Columns of Matrix A = Rows of Matrix B")
+
+#Transpose
+    elif choice == 4:
+        print("\nTranspose of Matrix A:")
+        print(matrix_A.T)
+
+        print("\nTranspose of Matrix B:")
+        print(matrix_B.T)
+
+#Determinant
+    elif choice == 5:
+        if rows_A == cols_A:
+            print("\nDeterminant of Matrix A:")
+            print(np.linalg.det(matrix_A))
+        else:
+            print("\nMatrix A is not Sqaure Matrix")
+
+        if rows_B == cols_B:
+            print("\nDeterminant of Matrix B:")
+            print(np.linalg.det(matrix_B))
+        else:
+            print("\nMatrix B is not Sqaure Matrix")
+
+#Inverse
+    elif choice == 6:
+        if rows_A == cols_A:
+            if np.linalg.det(matrix_A) != 0:
+                print("\nInverse of Matrix A:")
+                print(np.linalg.inv(matrix_A))
+            else:
+                print("\nMatrix A doesn't exist")
+        else:
+            print("\nMatrix A is not Sqaure Matrix")
+        if rows_B == cols_B:
+            if np.linalg.det(matrix_B) != 0:
+                print("\n Inverse of Matrix B:")
+                print(np.linalg.inv(matrix_B))
+            else:
+                print("\nMatrix B doesn't exist")
+        else:
+            print("\nMatrix B is not Sqaure Matrix")
+
+#Trace
+    elif choice == 7:
+        if rows_A == cols_A:
+            print("\nTrace of Matrix A:")
+            print(np.trace(matrix_A))
+        else:
+            print("\nMatrix A is not Sqaure Matrix")
+        if rows_B == cols_B:
+            print("\nTrace of Matrix B:")
+            print(np.trace(matrix_B))
+        else:
+            print("\nMatrix B is not Sqaure Matrix")
+
+#Exit!!
+    elif choice == 8:
+        print("\nThank you!!")
+        break
+    else:
+        print("\nInvalid choice! Please enter 1 to 8.")
+
+#Output:
+Enter number of rows for Matrix A:2
+Enter number of columns for Matrix A:2
+Enter row 1 of Matrix A:2 3
+Enter row 2 of Matrix A:3 3
+Enter number of rows for Matrix B:2
+Enter number of columns for Matrix B:2
+Enter row 1 of Matrix B:4 5
+Enter row 2 of Matrix B:5 4
+
+Matrix A:
+[[2 3]
+ [3 3]]
+
+Matrix B:
+[[4 5]
+ [5 4]]
+
+--Matrix Calculator--
+1. Addition
+2. Substraction
+3. Multiplication
+4. Transpose
+5. Determinant
+6. Inverse
+7. Trace
+8. Exit
+Enter your choice:3
+
+Multiplication:
+[[23 22]
+ [27 27]]
+
+--Matrix Calculator--
+1. Addition
+2. Substraction
+3. Multiplication
+4. Transpose
+5. Determinant
+6. Inverse
+7. Trace
+8. Exit
+Enter your choice:8
+
+Thank you!!
